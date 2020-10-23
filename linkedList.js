@@ -30,10 +30,10 @@ class List {
         let lastNode = this.head;
         if (lastNode) {
             while (lastNode.next) {
-                lastNode = lastNode.next
+                lastNode = lastNode.next;
             }
         }
-        return lastNode
+        return lastNode;
     }
 
     getFirst() {
