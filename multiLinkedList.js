@@ -45,4 +45,52 @@ class LinkedList {
       return undefined;
     });
   }
+
+  addFirst(value) {
+    const newNode = new Node(value);
+    newNode.next = this.first;
+
+    if (this.first) {
+      this.first.previous = newNode;
+    } else {
+      this.last = newNode;
+    }
+    this.first = newNode;
+    this.size += 1;
+    return newNode;
+  }
+  addLast(value) {
+    const newNode = new Node(value);
+
+    newNode.previous = this.last;
+    if (this.last) {
+      this.last.next = newNode;
+    } else {
+      this.first = newNode;
+    }
+
+    this.last = newNode;
+    this.size += 1;
+    return newNode;
+  }
+  add(value, position = 0) {
+    if (position === 0) {
+      return this.addFirst(value);
+    }
+    if (position === this.size) {
+      return this.addLast(value);
+    }
+    const current = this.get(position);
+
+    if (current) {
+      const newNode = new Node(value);
+      newNode.previous = current.previous;
+      newNode.next = current;
+      current.previous = newNode;
+      current.previous.next = newNode;
+      this.size += 1;
+      return newNode;
+    }
+    return undefined;
+  }
 }
